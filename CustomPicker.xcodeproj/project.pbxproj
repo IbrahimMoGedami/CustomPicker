@@ -12,6 +12,7 @@
 		DD6251692C0326A300770BDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD6251682C0326A300770BDD /* Assets.xcassets */; };
 		DD62516C2C0326A300770BDD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD62516B2C0326A300770BDD /* Preview Assets.xcassets */; };
 		DD6251732C03270E00770BDD /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6251722C03270E00770BDD /* Colors.swift */; };
+		DD6251752C03483900770BDD /* CustomPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6251742C03483900770BDD /* CustomPickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		DD6251682C0326A300770BDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DD62516B2C0326A300770BDD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DD6251722C03270E00770BDD /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		DD6251742C03483900770BDD /* CustomPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 				DD6251682C0326A300770BDD /* Assets.xcassets */,
 				DD62516A2C0326A300770BDD /* Preview Content */,
 				DD6251722C03270E00770BDD /* Colors.swift */,
+				DD6251742C03483900770BDD /* CustomPickerView.swift */,
 			);
 			path = CustomPicker;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD6251672C0326A200770BDD /* PickerView.swift in Sources */,
+				DD6251752C03483900770BDD /* CustomPickerView.swift in Sources */,
 				DD6251732C03270E00770BDD /* Colors.swift in Sources */,
 				DD6251652C0326A200770BDD /* CustomPickerApp.swift in Sources */,
 			);

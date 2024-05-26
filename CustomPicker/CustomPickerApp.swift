@@ -11,7 +11,7 @@ import SwiftUI
 struct CustomPickerApp: App {
     var body: some Scene {
         WindowGroup {
-            WheelPickerDemo()
+            ContentView()
         }
     }
 }

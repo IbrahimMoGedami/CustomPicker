@@ -9,67 +9,59 @@ import SwiftUI
 import AudioToolbox
 
 struct PickerView: View {
-    
     @Binding var selectedIndex: Int?
     var items = Colors.allCases
-    var soundId: SystemSoundID = 1127
-    
+    var soundId: SystemSoundID = 1127  // focus_change_small.caf
     var itemHeight: CGFloat = 58.0
     var menuHeightMultiplier: CGFloat = 5
-    
-    
+
     var body: some View {
-        let itemsCountAbove = Double(Int((menuHeightMultiplier - 1)/2))
+        let itemsCountAbove = Double(Int((menuHeightMultiplier - 1) / 2))
         let degreesMultiplier: Double = -40.0 / itemsCountAbove
         let scaleMultiplier: CGFloat = 0.1 / itemsCountAbove
-        
+
         ScrollView(.vertical) {
-            LazyVStack(spacing: 0){
-                ForEach(0..<items.count, id:\.self) { index in
+            LazyVStack(spacing: 0) {
+                ForEach(0..<items.count, id: \.self) { index in
                     let category = items[index]
-                    let indexDiff = Double(index-(selectedIndex ?? 0))
+                    let indexDiff = Double(index - (selectedIndex ?? 0))
                     HStack {
-                        Image(systemName: "cat.fill")
-                        Text(category.rawValue)
-                            .foregroundStyle(category.color)
+                        Image(systemName: "circle.fill")
+                        Text(category.rawValue.capitalized)
+                            .foregroundColor(category.color)
                             .padding()
                             .frame(width: 100)
-                            .background(
-                                RoundedRectangle(cornerRadius: 16)
-                            )
+                            .background(RoundedRectangle(cornerRadius: 16).fill(Color.gray.opacity(0.2)))
                             .id(index)
                     }
                     .frame(height: itemHeight)
-                    .rotation3DEffect(Angle(degrees: indexDiff * degreesMultiplier),axis: (x: 1.0, y: 0.0, z: 0.0), perspective: 0.6)
-                    .scaleEffect(x: 1 - CGFloat(abs(indexDiff)*scaleMultiplier))
-                    
+                    .rotation3DEffect(
+                        Angle(degrees: indexDiff * degreesMultiplier),
+                        axis: (x: 1.0, y: 0.0, z: 0.0),
+                        perspective: 0.6
+                    )
+                    .scaleEffect(x: 1 - CGFloat(abs(indexDiff) * scaleMultiplier))
                 }
-                
             }
             .scrollTargetLayout()
-            // so that first and last item can fit into the selection area
             .padding(.vertical, itemHeight * itemsCountAbove)
-            
         }
         .scrollPosition(id: $selectedIndex, anchor: .center)
         .frame(height: itemHeight * (itemsCountAbove * 2 + 1))
-        //         adding padding if menuHeight multiplier is even number
-        .padding(.vertical, (Int(menuHeightMultiplier)%2 == 0) ? itemHeight * 0.5 : 0)
-        // it has to be align top for the correct scroll position id
-        .overlay(alignment: .center, content: {
+        .padding(.vertical, (Int(menuHeightMultiplier) % 2 == 0) ? itemHeight * 0.5 : 0)
+        .overlay(alignment: .center) {
             RoundedRectangle(cornerRadius: 16)
                 .fill(Color.gray.opacity(0.1))
-                .stroke(Color.black.opacity(0.7), style: StrokeStyle(lineWidth: 1.0))
+                .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.black.opacity(0.7), lineWidth: 1))
                 .frame(height: itemHeight)
                 .allowsHitTesting(false)
-        })
+        }
         .scrollTargetBehavior(.viewAligned)
         .scrollIndicators(.hidden)
-        .onChange(of: selectedIndex, initial: false) {
+        .onChange(of: selectedIndex, perform: { _ in
             AudioServicesPlaySystemSound(soundId)
-        }
+        })
     }
-    
 }
 
 struct WheelPickerDemo: View {
@@ -87,8 +79,11 @@ struct WheelPickerDemo: View {
             
         }
     }
+    
 }
 
 #Preview {
+    
     WheelPickerDemo()
+    
 }
